@@ -81,19 +81,19 @@ public class CategoryController {
         categoryService.remove(category.getId());
         return "redirect:categories";
     }
-//    @GetMapping("view-category/{id}")
-//    public ModelAndView viewCategory(@PathVariable("id") Long id){
-//        Category category = categoryService.findById(id);
-//        if(category == null){
-//            return new ModelAndView("/error-404");
-//        }
-//
-//        Iterable<Blog> blogs = blogService.findAllByCategory(category);
-//        ModelAndView modelAndView = new ModelAndView("category/view");
-//        modelAndView.addObject("category", category);
-//        modelAndView.addObject("customers", blogs);
-//        return modelAndView;
-//
-//    }
+    @GetMapping("view-category/{id}")
+    public ModelAndView viewCategory(@PathVariable("id") Long id){
+        Category category = categoryService.findById(id);
+        if(category == null){
+            return new ModelAndView("/error-404");
+        }
+
+        Iterable<Blog> blogs = blogService.findAllByCategory(category);
+        ModelAndView modelAndView = new ModelAndView("category/view");
+        modelAndView.addObject("category", category);
+        modelAndView.addObject("blogs", blogs);
+        return modelAndView;
+
+    }
 
 }
